@@ -28,7 +28,7 @@ class AudienceMember {
         "Latitude: " + data.getFloat("lat") + "\n" + 
         "Longitude: " + data.getFloat("long")  + "\n" + 
         "Altitude: " + data.getFloat("alt");
-    drawText(exifDataText, 0.0005*width, 0.25 * height);
+    drawText(exifDataText, 0.0005*width, 0.1 * height);
     syphonCanvas.endDraw();
   }
 

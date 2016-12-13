@@ -4,12 +4,14 @@ var markerCtr = 0;
 
 var rotateInterval;
 
-var am1FileName = "IMG_1906.JPG";
-var am2FileName = "IMG_1901.JPG";
-var am3FileName = "IMG_1899.JPG";
+// RESET FILES NAMES !!!
+var am1FileName = "";
+var am2FileName = "";
+var am3FileName = "";
 
 var am1Marker;
-
+var am2Marker;
+var am3Marker;
 
 L.mapbox.accessToken = 'pk.eyJ1IjoibGlzYWphbWhvdXJ5IiwiYSI6ImNpZzV4NHgzcTRrdHp0d2x2cHRvdjVhY3gifQ.ftTsm2W5PxBCE83mpl0w6Q';
 // Construct a bounding box for this map that the user cannot
@@ -22,15 +24,15 @@ var map = L.mapbox.map('map', 'lisajamhoury.15f0ade8', {
   // set that bounding box as maxBounds to restrict moving the map
   // see full maxBounds documentation:
   // http://leafletjs.com/reference.html#map-maxbounds
-  maxBounds: bounds,
-  maxZoom: 13,
-  minZoom: 13
+  //maxBounds: bounds,
+  // maxZoom: 13,
+  // minZoom: 13
 });
 
 // zoom the map to that bounding box
 map.fitBounds(bounds);
 
-$.getJSON("../../exif_data/exif.json", function(json) {
+$.getJSON("../../0_exif_data/exif.json", function(json) {
   exifData = json;
   createMarkers(exifData);
 });
@@ -51,11 +53,16 @@ function onKeyPress(e) {
   if (e.key == '2') {
     clearInterval(rotateInterval);
     am1Marker.openPopup();
-
   }
 
   if (e.key == '3') {
+    clearInterval(rotateInterval);
+    am2Marker.openPopup();
+  }
 
+  if (e.key == '4') {
+    clearInterval(rotateInterval);
+    am3Marker.openPopup();
   }
 
 }
@@ -75,14 +82,21 @@ function createMarkers(data) {
 
       if (data[key].filename == am1FileName) {
         am1Marker = marker;
-        console.log(am1Marker);
+      }
+
+      if (data[key].filename == am2FileName) {
+        am2Marker = marker;
+      }
+
+      if (data[key].filename == am3FileName) {
+        am3Marker = marker;
       }
 
     } else { //catch not catching undefined
-      console.log(data[key].filename);
+      console.log("no lat", data[key].filename);
     }
   }
-  console.log(markers);
+  // console.log(markers);
 }
 
 

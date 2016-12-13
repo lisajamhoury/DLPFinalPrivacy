@@ -11,7 +11,7 @@ void setupDrawText() {
 import java.util.Iterator;
 
 //DEBUG
-boolean debugFrameRate = true;
+boolean debugFrameRate = false;
 boolean debugFlowField = false;
 
 //Set noise for each flowfield
